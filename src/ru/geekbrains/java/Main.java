@@ -18,9 +18,8 @@ public class Main {
         С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
          */
         int[] arrayForEx2 = new int[8];
-        for (int i = 0; i < arrayForEx2.length; i++) {
-            arrayForEx2[i] = i * 3;
-        }
+
+        fillMultipleOfThreeArray(arrayForEx2);
         printIntArray(arrayForEx2);
 
         /*
@@ -28,11 +27,7 @@ public class Main {
         пройти по нему циклом, и числа меньшие 6 умножить на 2;
          */
         int[] arrayForEx3 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        for (int i = 0; i < arrayForEx3.length; i++) {
-            if (arrayForEx3[i] < 6) {
-                arrayForEx3[i] = arrayForEx3[i] * 2;
-            }
-        }
+        multiplicationByTwoArrayElementsLessThanSix(arrayForEx3);
         printIntArray(arrayForEx3);
 
         /*
@@ -40,32 +35,13 @@ public class Main {
         и с помощью цикла(-ов) заполнить его диагональные элементы единицами;
          */
         int[][] arrayForEx4 = new int[4][4];
-        for (int i = 0; i < arrayForEx4.length; i++) {
-            for (int j = 0; j < arrayForEx4[i].length; j++) {
-                if (i == j) {
-                    arrayForEx4[i][j] = 1;
-                }
-            }
-        }
-        for (int i = 0; i < arrayForEx4.length; i++) {
-            System.out.println(Arrays.toString(arrayForEx4[i]));
-        }
+        fillAndPrintDiagonalElements(arrayForEx4);
         /*
         5. ** Задать одномерный массив и найти в нем минимальный и
         максимальный элементы (без помощи интернета);
          */
         int[] arrayForEx5 = {19, -5, 3, 2, 11, 4, 5, 25, 4, 8, 9, 1};
-        int max = arrayForEx5[0];
-        int min = arrayForEx5[0];
-        for (int i = 1; i < arrayForEx5.length; i++) {
-            if (arrayForEx5[i] > max) {
-                max = arrayForEx5[i];
-            }
-            if (arrayForEx5[i] < min) {
-                min = arrayForEx5[i];
-            }
-        }
-        System.out.println("Min = " + min + ", Max = " + max);
+        findAndPrintMinMaxInArray(arrayForEx5);
         /*
         6. ** Написать метод, в который передается не пустой одномерный целочисленный массив,
         метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части
@@ -75,7 +51,7 @@ public class Main {
 
         В этом задании используется массив {0, 1, 3, 2, 11, 4, 5,|| 1, 8, 8, 9, 0}*/
         int[] arrayForEx6 = {0, 1, 3, 2, 11, 4, 5, 1, 8, 8, 9, 0};
-        System.out.println(checkBalance(arrayForEx6));
+        System.out.println(сheckBalance(arrayForEx6));
 
         /*
         7. **** Написать метод, которому на вход подается одномерный массив и число n
@@ -84,21 +60,70 @@ public class Main {
         вспомогательными массивами.
          */
         int[] arrayForEx71 = {0, 1, 3, 2, 7, 4, 5, 1, 8, 8, 9, 0};
-        System.out.println("Array before: " + Arrays.toString(arrayForEx71));
-        System.out.println("Array after offset 4:  " + Arrays.toString(offSetByNPositions(arrayForEx71, 4)));
+         System.out.println("Array after offset 4:  " + Arrays.toString(offSetByNPositions(arrayForEx71, 4)));
         int[] arrayForEx72 = {0, 1, 3, 2, 7, 4, 5, 1, 8, 8, 9, 0};
         System.out.println("Array after offset -4: " + Arrays.toString(offSetByNPositions(arrayForEx72, -4)));
     }
 
-    private static short[] invertValuesInArray(short[] shorts) {
-        for (int i = 0; i < shorts.length; i++) {
-            if (shorts[i] == 0) {
-                shorts[i] = 1;
-            } else if (shorts[i] == 1) {
-                shorts[i] = 0;
+    private static short[] invertValuesInArray(short[] array) {
+        printExerciseNumber(1);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                array[i] = 1;
+            } else if (array[i] == 1) {
+                array[i] = 0;
             }
         }
-        return shorts;
+        return array;
+    }
+
+    private static void fillMultipleOfThreeArray(int[] array) {
+        printExerciseNumber(2);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i * 3;
+        }
+    }
+
+    private static void multiplicationByTwoArrayElementsLessThanSix(int[] array) {
+        printExerciseNumber(3);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 6) {
+                array[i] = array[i] * 2;
+            }
+        }
+    }
+
+    private static void fillAndPrintDiagonalElements(int[][] array) {
+        printExerciseNumber(4);
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i == j || (array.length - 1 - i) == j) {
+                    array[i][j] = 1;
+                }
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(Arrays.toString(array[i]));
+        }
+    }
+
+    private static void findAndPrintMinMaxInArray(int[] array) {
+        printExerciseNumber(5);
+        int max = array[0];
+        int min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        System.out.println("Min = " + min + ", Max = " + max);
+    }
+
+    private static void printExerciseNumber(int exNumber) {
+        System.out.println("Ex." + exNumber);
     }
 
     private static void printIntArray(int[] array) {
@@ -106,7 +131,8 @@ public class Main {
     }
 
 
-    private static boolean checkBalance(int[] array) {
+    private static boolean сheckBalance(int[] array) {
+        printExerciseNumber(6);
         int i = 0;
         while (i < array.length) {
             if (compareLeftAndRightPartSumArray(array, i)) {
@@ -130,6 +156,8 @@ public class Main {
     }
 
     private static int[] offSetByNPositions(int[] array, int n) {
+        printExerciseNumber(7);
+        System.out.println("Array before: " + Arrays.toString(array));
         if (n == 0) {
             return array;
         }
